@@ -2,7 +2,7 @@
     "name": "sachinkiranti/emoji",
     "description": "A simple yet flexible emoji integration system for laravel.",
     "keywords": ["laravel","php","github","emoji","unicode"],
-    "type": "Laravel, Emoji, laravel-emoji",
+    "type": "Laravel",
     "license": "MIT",
     "authors": [
         {
