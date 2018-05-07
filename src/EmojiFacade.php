@@ -5,8 +5,7 @@ namespace SachinKiranti\Emoji;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class EmojiFacade
- * @package SachinKiranti\Emoji
+ * Class EmojiFacade.
  */
 class EmojiFacade extends Facade
 {

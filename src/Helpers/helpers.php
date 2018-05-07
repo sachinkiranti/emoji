@@ -1,20 +1,22 @@
 <?php
 
 /**
- * Helper functions
- * @package sachinkiranti/emoji
+ * Helper functions.
+ *
  * @version 0.0.1
+ *
  * @since 0.0.1
  */
-
-if (! function_exists('emoji') ) :
+if (!function_exists('emoji')) :
 
     /**
-     * [emoji description]
+     * [emoji description].
+     *
      * @param $key
+     *
      * @return mixed
      */
-    function emoji( $key = null )
+    function emoji($key = null)
     {
         $emoji = app('emoji');
 

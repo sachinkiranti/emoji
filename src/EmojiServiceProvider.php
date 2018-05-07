@@ -1,6 +1,6 @@
 <?php
 
-namespace SachinKiranti\Emoji; 
+namespace SachinKiranti\Emoji;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -34,10 +34,8 @@ class EmojiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('emoji', function($app)
-        {
+        $this->app->singleton('emoji', function ($app) {
             return $this->app->make('SachinKiranti\Emoji\Emoji');
         });
     }
-
 }
