@@ -2,37 +2,41 @@
 
 namespace SachinKiranti\Emoji\Services;
 
-use SachinKiranti\Emoji\Exceptions\{EmojiException, EmojiNotFoundException};
+use SachinKiranti\Emoji\Exceptions\EmojiException;
+use SachinKiranti\Emoji\Exceptions\EmojiNotFoundException;
 
 /**
- * class EmojiService
- * @package SachinKiranti\Emoji\Services
+ * class EmojiService.
  */
-class EmojiService {
-
+class EmojiService
+{
     /**
-     * $emoji
-     * @var $emoji
+     * $emoji.
+     *
+     * @var
      */
     protected $emoji;
 
     /**
-     * Get emoji collections
+     * Get emoji collections.
+     *
      * @return array
      */
     protected function emojiCollection() : array
     {
         $config = app('config');
+
         return $config->get('emoji');
 
         // For testing
         // $config = require( "./config/emoji.php");
-        
+
         // return $config;
     }
 
     /**
-     * Getting all available emoji
+     * Getting all available emoji.
+     *
      * @return array
      */
     public function all() : array
@@ -41,9 +45,10 @@ class EmojiService {
     }
 
     /**
-     * Determine if a given emoji exists
+     * Determine if a given emoji exists.
      *
-     * @param  string|array  $emoji
+     * @param string|array $emoji
+     *
      * @return bool
      */
     public function has($emoji) : bool
@@ -51,7 +56,7 @@ class EmojiService {
         $emojis = is_array($emoji) ? $emoji : func_get_args();
 
         foreach ($emojis as $emoji) {
-            if (! isset($this->all()[$emoji])) {
+            if (!isset($this->all()[$emoji])) {
                 return false;
             }
         }
@@ -60,19 +65,19 @@ class EmojiService {
     }
 
     /**
-     * [get description]
-     * @param  [type] $emoji [description]
-     * @return [type]        [description]
+     * [get description].
+     *
+     * @param [type] $emoji [description]
+     *
+     * @return [type] [description]
      */
-    public function get( $emoji = null )
+    public function get($emoji = null)
     {
-        if ( is_null($emoji) )
-        {
-            throw new EmojiException("emoji parameter is required.");
+        if (is_null($emoji)) {
+            throw new EmojiException('emoji parameter is required.');
         }
 
-        if ( is_array($emoji) ) 
-        {
+        if (is_array($emoji)) {
             return $this->emojiArr($emoji);
         }
 
@@ -80,11 +85,13 @@ class EmojiService {
     }
 
     /**
-     * [emojiArr description]
-     * @param  [type] $arr [description]
-     * @return [type]      [description]
+     * [emojiArr description].
+     *
+     * @param [type] $arr [description]
+     *
+     * @return [type] [description]
      */
-    public function emojiArr( $arr )
+    public function emojiArr($arr)
     {
         $group = [];
 
@@ -98,29 +105,32 @@ class EmojiService {
     }
 
     /**
-     * [getEmoji description]
-     * @param  [type] $key [description]
-     * @return [type]      [description]
+     * [getEmoji description].
+     *
+     * @param [type] $key [description]
+     *
+     * @return [type] [description]
      */
-    public function getEmoji( $key )
+    public function getEmoji($key)
     {
         return $this->exists($key)->emojiCollection()[$key];
     }
 
     /**
-     * If exist return $emoji . false throw exception
-     * @param  [type] $emoji [description]
-     * @return [type]        [description]
+     * If exist return $emoji . false throw exception.
+     *
+     * @param [type] $emoji [description]
+     *
+     * @return [type] [description]
      */
-    protected function exists( $emoji )
+    protected function exists($emoji)
     {
-        if (!array_key_exists($emoji, $this->emojiCollection()))
-        {
+        if (!array_key_exists($emoji, $this->emojiCollection())) {
             throw new EmojiNotFoundException($emoji);
         }
 
         $this->emoji = $emoji;
+
         return $this;
     }
-
 }

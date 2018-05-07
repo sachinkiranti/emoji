@@ -2,15 +2,14 @@
 
 namespace SachinKiranti\Emoji\Test;
 
-use SachinKiranti\Emoji\Emoji;
 use PHPUnit\Framework\TestCase;
+use SachinKiranti\Emoji\Emoji;
+use SachinKiranti\Emoji\Exceptions\EmojiMethodNotFound;
+use SachinKiranti\Emoji\Exceptions\EmojiNotFoundException;
 use SachinKiranti\Emoji\Services\EmojiService as Service;
-use SachinKiranti\Emoji\Exceptions\{
-    EmojiException, EmojiMethodNotFound, EmojiNotFoundException};
 
 class EmojiTest extends TestCase
 {
-
     protected $emoji;
 
     protected $service;
@@ -19,7 +18,7 @@ class EmojiTest extends TestCase
     {
         parent::setUp();
         $this->service = new Service();
-        $this->emoji   = new Emoji( $this->service );
+        $this->emoji = new Emoji($this->service);
     }
 
     /** @test */
@@ -43,13 +42,14 @@ class EmojiTest extends TestCase
     }
 
     /**
-     * emoji.php config file
+     * emoji.php config file.
+     *
      * @return array
      */
     private function emojiCollection()
     {
-        $emojis = require( __DIR__ . "/../config/emoji.php");
+        $emojis = require __DIR__.'/../config/emoji.php';
+
         return $emojis;
     }
-
 }
